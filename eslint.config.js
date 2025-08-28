@@ -24,6 +24,8 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-    },
+      'react/react-in-jsx-scope': 'off',
+      'indent': ['error', 2], // ⚡ 2 espaces par niveau
+    }    
   },
 ])
