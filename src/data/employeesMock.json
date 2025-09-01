@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "firstName": "Alice",
+    "lastName": "Dupont",
+    "dateOfBirth": "1990-05-12",
+    "startDate": "2023-01-15",
+    "department": "Engineering",
+    "street": "12 rue des Lilas",
+    "city": "Paris",
+    "state": "Île-de-France",
+    "zipCode": "75012"
+  },
+  {
+    "id": 2,
+    "firstName": "Bob",
+    "lastName": "Martin",
+    "dateOfBirth": "1985-09-30",
+    "startDate": "2022-06-01",
+    "department": "Marketing",
+    "street": "34 avenue Victor Hugo",
+    "city": "Lyon",
+    "state": "Auvergne-Rhône-Alpes",
+    "zipCode": "69008"
+  },
+  {
+    "id": 3,
+    "firstName": "Claire",
+    "lastName": "Lemoine",
+    "dateOfBirth": "1992-11-20",
+    "startDate": "2021-09-10",
+    "department": "Human Resources",
+    "street": "5 rue Saint-Michel",
+    "city": "Marseille",
+    "state": "Provence-Alpes-Côte d'Azur",
+    "zipCode": "13006"
+  },
+  {
+    "id": 4,
+    "firstName": "David",
+    "lastName": "Nguyen",
+    "dateOfBirth": "1988-07-07",
+    "startDate": "2020-03-22",
+    "department": "Sales",
+    "street": "78 boulevard Saint-Germain",
+    "city": "Paris",
+    "state": "Île-de-France",
+    "zipCode": "75005"
+  },
+  {
+    "id": 5,
+    "firstName": "Emma",
+    "lastName": "Moreau",
+    "dateOfBirth": "1995-02-18",
+    "startDate": "2023-04-12",
+    "department": "Legal",
+    "street": "23 rue de la République",
+    "city": "Lille",
+    "state": "Hauts-de-France",
+    "zipCode": "59000"
+  }
+]

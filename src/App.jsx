@@ -1,12 +1,18 @@
-import './App.css'
-import { Container, Typography } from '@mui/material'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import CreateEmployee from './pages/CreateEmployee'
+import EmployeeList from './pages/EmployeeList'
+import Layout from './components/Layout'
 
 function App() {
-
   return (
-    <Container maxWidth="sm" sx={{bgcolor: 'tomato', height: '100vh'}}>
-      <Typography sx={{p:1}}>Hello World !</Typography>
-    </Container>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<CreateEmployee />} />
+          <Route path="employees" element={<EmployeeList />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
