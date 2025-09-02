@@ -23,13 +23,13 @@ export default function SortingTableHeaders({ sortConfig, setSortConfig }) {
           {sortConfig.key === title.key ? (
             sortConfig.direction === 'asc' ? (
               <img
-                src={sortArrowUp}
+                src={sortArrowDown}
                 alt="ascendant"
                 style={{ marginLeft: 4 }}
               />
             ) : (
               <img
-                src={sortArrowDown}
+                src={sortArrowUp}
                 alt="descendant"
                 style={{ marginLeft: 4 }}
               />

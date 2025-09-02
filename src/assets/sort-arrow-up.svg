@@ -4,8 +4,8 @@
   xmlns="http://www.w3.org/2000/svg">
 
   <g>
-    <polygon points="25,1.5 4.7,23 45.3,23" fill="purple"/>
+    <polygon points="25,1.5 4.7,23 45.3,23" fill="#7A80DD"/>
     
-    <polygon points="25,48.5 45.3,27 4.7,27" fill="grey"/>
+    <polygon points="25,48.5 45.3,27 4.7,27" fill="#DCDCDC"/>
   </g>
 </svg>
