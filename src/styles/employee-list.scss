@@ -1,0 +1,12 @@
+table {
+  display: table;
+  flex-direction: column;
+  gap: 15px;
+  tr {
+    th {
+      img {
+        height: 25px;
+      }
+    }
+  }
+}

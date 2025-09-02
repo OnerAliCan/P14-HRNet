@@ -7,10 +7,9 @@ export default function DateInput({ label, value, onChange }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        label={label}
         value={value}
         onChange={onChange}
-        renderInput={(params) => <TextField {...params} />}
+        slotProps={{ textField: { label, fullWidth: true } }}
       />
     </LocalizationProvider>
   )

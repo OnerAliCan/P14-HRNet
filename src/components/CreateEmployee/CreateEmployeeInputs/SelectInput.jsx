@@ -6,8 +6,11 @@ export default function SelectInput({ label, value, onChange, options }) {
       <InputLabel>{label}</InputLabel>
       <Select value={value} onChange={onChange} label={label}>
         {options.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
+          <MenuItem
+            key={option.value || option.abbreviation || option}
+            value={option.value || option.abbreviation || option}
+          >
+            {option.label || option.name || option}
           </MenuItem>
         ))}
       </Select>

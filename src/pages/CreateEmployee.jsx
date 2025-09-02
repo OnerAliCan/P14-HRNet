@@ -1,6 +1,6 @@
 // src/pages/CreateEmployee.jsx
 import { Container, Paper, Typography } from '@mui/material'
-import CreateEmployeeForm from '../components/CreateEmployeeForm'
+import CreateEmployeeForm from '../components/CreateEmployee/CreateEmployeeForm'
 
 export default function CreateEmployee() {
   return (

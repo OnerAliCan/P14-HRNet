@@ -1,66 +1,14 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addEmployee } from '../redux/employeesSlice'
+import { addEmployee } from '../../redux/employeesSlice'
 import { Box, Button, Typography } from '@mui/material'
-import TextInput from './inputs/TextInput'
-import NumberInput from './inputs/NumberInput'
-import DateInput from './inputs/DateInput'
-import SelectInput from './inputs/SelectInput'
+import TextInput from './CreateEmployeeInputs/TextInput'
+import NumberInput from './CreateEmployeeInputs/NumberInput'
+import DateInput from './CreateEmployeeInputs/DateInput'
+import SelectInput from './CreateEmployeeInputs/SelectInput'
 import Modal from './Modal'
-
-const states = [
-  'AL',
-  'AK',
-  'AZ',
-  'AR',
-  'CA',
-  'CO',
-  'CT',
-  'DE',
-  'DC',
-  'FL',
-  'GA',
-  'HI',
-  'ID',
-  'IL',
-  'IN',
-  'IA',
-  'KS',
-  'KY',
-  'LA',
-  'ME',
-  'MD',
-  'MA',
-  'MI',
-  'MN',
-  'MS',
-  'MO',
-  'MT',
-  'NE',
-  'NV',
-  'NH',
-  'NJ',
-  'NM',
-  'NY',
-  'NC',
-  'ND',
-  'OH',
-  'OK',
-  'OR',
-  'PA',
-  'RI',
-  'SC',
-  'SD',
-  'TN',
-  'TX',
-  'UT',
-  'VT',
-  'VA',
-  'WA',
-  'WV',
-  'WI',
-  'WY',
-]
+import states from '../../data/states'
+import departments from '../../data/departments'
 
 export default function CreateEmployeeForm() {
   const dispatch = useDispatch()
@@ -158,12 +106,11 @@ export default function CreateEmployeeForm() {
         value={zipCode}
         onChange={(e) => setZipCode(e.target.value)}
       />
-
       <SelectInput
         label="Département"
         value={department}
         onChange={(e) => setDepartment(e.target.value)}
-        options={['Sales', 'Marketing', 'Engineering', 'HR', 'Legal']}
+        options={departments}
       />
       <Button type="submit" variant="contained">
         Ajouter
