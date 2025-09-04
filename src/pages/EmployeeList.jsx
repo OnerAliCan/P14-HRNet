@@ -2,10 +2,18 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import EmployeeRow from '../components/EmployeeList/EmployeeRow'
 import SortingTableHeaders from '../components/EmployeeList/SortingTableHeaders'
+import EmployeeSearch from '../components/EmployeeList/EmployeeSearch'
+import EntryNumber from '../components/EmployeeList/EntryNumber'
+import EmployeeDropdown from '../components/EmployeeList/EmployeeDropdown'
 import '../styles/employee-list.scss'
 
 export default function EmployeeList() {
   const employees = useSelector((state) => state.employees.list)
+  const [searchQuery, setSearchQuery] = useState('')
+
+  //Nombre d'entrées initialisé à 10
+  const [showEntries, setShowEntries] = useState(10)
+  console.log(showEntries)
 
   // Tri par défaut sur "Prénom"
   const [sortConfig, setSortConfig] = useState({
@@ -46,9 +54,17 @@ export default function EmployeeList() {
     })
   }
 
+  // convertir l'objet filteredEmployees en tableau de valeurs (stringifiées)
+  let filteredEmployees = sortedEmployees.filter((emp) => {
+    return Object.values(emp).some((value) =>
+      String(value).toLowerCase().includes(searchQuery.toLowerCase()),
+    )
+  })
   return (
     <div>
       <h4>Employee List</h4>
+      <EmployeeSearch onSearch={setSearchQuery} />
+      <EmployeeDropdown setShowEntries={setShowEntries} />
       <table>
         <thead>
           <tr>
@@ -59,11 +75,15 @@ export default function EmployeeList() {
           </tr>
         </thead>
         <tbody>
-          {sortedEmployees.map((emp) => (
+          {filteredEmployees.map((emp) => (
             <EmployeeRow key={emp.id} employee={emp} />
           ))}
         </tbody>
       </table>
+      <EntryNumber
+        filteredNumber={filteredEmployees.length}
+        totalNumber={sortedEmployees.length}
+      />
     </div>
   )
 }

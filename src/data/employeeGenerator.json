@@ -1,0 +1,15 @@
+[
+  "{{repeat(100)}}",
+  {
+    "id": "{{index()}}",
+    "firstName": "{{firstName()}}",
+    "lastName": "{{surname()}}",
+    "dateOfBirth": "{{date(new Date(1970, 0, 1), new Date(2005, 11, 31), \"YYYY-MM-dd\")}}",
+    "startDate": "{{date(new Date(1970, 0, 1), new Date(2005, 11, 31), \"YYYY-MM-dd\")}}",
+    "department": "{{random(\"Sales\", \"Marketing\", \"Engineering\", \"HR\", \"Legal\")}}",
+    "street": "{{integer(100, 999)}} {{street()}}",
+    "city": "{{city()}}",
+    "state": "{{state()}}",
+    "zipCode": "{{integer(100, 10000)}}"
+  }
+]
