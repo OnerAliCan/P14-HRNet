@@ -5,6 +5,7 @@ import SortingTableHeaders from '../components/EmployeeList/SortingTableHeaders'
 import EmployeeSearch from '../components/EmployeeList/EmployeeSearch'
 import EntryNumber from '../components/EmployeeList/EntryNumber'
 import EmployeeDropdown from '../components/EmployeeList/EmployeeDropdown'
+import Pagination from '../components/EmployeeList/Pagination'
 import '../styles/employee-list.scss'
 
 export default function EmployeeList() {
@@ -13,7 +14,10 @@ export default function EmployeeList() {
 
   //Nombre d'entrées initialisé à 10
   const [showEntries, setShowEntries] = useState(10)
-  console.log(showEntries)
+  // console.log('showEntries :', showEntries)
+
+  // Page initialisée sur 1
+  const [page, setPage] = useState(1)
 
   // Tri par défaut sur "Prénom"
   const [sortConfig, setSortConfig] = useState({
@@ -60,10 +64,15 @@ export default function EmployeeList() {
       String(value).toLowerCase().includes(searchQuery.toLowerCase()),
     )
   })
+
+  const filteredEmployeesLength = filteredEmployees.length
+  const totalNumberLength = sortedEmployees.length
+  // const entryNumberLength = setShowEntries.length
+  // console.log(entryNumberLength)
   return (
     <div>
       <h4>Employee List</h4>
-      <EmployeeSearch onSearch={setSearchQuery} />
+      <EmployeeSearch onSearch={setSearchQuery} setPage={setPage} />
       <EmployeeDropdown setShowEntries={setShowEntries} />
       <table>
         <thead>
@@ -75,14 +84,22 @@ export default function EmployeeList() {
           </tr>
         </thead>
         <tbody>
-          {filteredEmployees.map((emp) => (
+          {filteredEmployees.slice(0, showEntries).map((emp) => (
             <EmployeeRow key={emp.id} employee={emp} />
           ))}
         </tbody>
       </table>
       <EntryNumber
-        filteredNumber={filteredEmployees.length}
-        totalNumber={sortedEmployees.length}
+        filteredEmployeesLength={filteredEmployeesLength}
+        totalNumberLength={totalNumberLength}
+        showEntries={showEntries}
+        page={page}
+      />
+      <Pagination
+        page={page}
+        setPage={setPage}
+        filteredEmployeesLength={filteredEmployeesLength}
+        showEntries={showEntries}
       />
     </div>
   )

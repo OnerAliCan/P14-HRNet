@@ -1,5 +1,4 @@
 export default function EmployeeDropdown({ setShowEntries }) {
-  console.log(setShowEntries)
   return (
     <>
       <label htmlFor="number-of-entries">Show</label>
@@ -7,10 +6,7 @@ export default function EmployeeDropdown({ setShowEntries }) {
       <select
         name="number-of-entries"
         id="number-of-entries"
-        onChange={(e) => (
-          (setShowEntries = e.target.value),
-          console.log(setShowEntries)
-        )}
+        onChange={(e) => setShowEntries(Number(e.target.value))}
       >
         <option value="10">10</option>
         <option value="25">25</option>
