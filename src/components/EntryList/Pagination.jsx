@@ -3,10 +3,10 @@ import { useEffect } from 'react'
 export default function Pagination({
   page,
   setPage,
-  filteredEmployeesLength,
+  filteredEntriesLength,
   showEntries,
 }) {
-  const maxPage = Math.ceil(filteredEmployeesLength / showEntries)
+  const maxPage = Math.ceil(filteredEntriesLength / showEntries)
 
   const handlePrevious = () => {
     if (page > 1) {
@@ -28,7 +28,7 @@ export default function Pagination({
     if (page < 1) {
       setPage(1)
     }
-  }, [filteredEmployeesLength, showEntries, maxPage, page, setPage])
+  }, [filteredEntriesLength, showEntries, maxPage, page, setPage])
 
   return (
     <>

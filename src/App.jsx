@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import CreateEmployee from './pages/CreateEmployee'
-import EmployeeList from './pages/EmployeeList'
+import CreateEntry from './pages/CreateEntry'
+import EntryList from './pages/EntryList'
 import Layout from './components/Layout'
 
 function App() {
@@ -8,8 +8,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<CreateEmployee />} />
-          <Route path="employees" element={<EmployeeList />} />
+          <Route index element={<CreateEntry />} />
+          <Route path="entries" element={<EntryList />} />
         </Route>
       </Routes>
     </BrowserRouter>

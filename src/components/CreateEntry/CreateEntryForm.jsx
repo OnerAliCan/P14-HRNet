@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addEmployee } from '../../redux/employeesSlice'
+import { addEntry } from '../../redux/entriesSlice'
 import { Box, Button, Typography } from '@mui/material'
-import TextInput from './CreateEmployeeInputs/TextInput'
-import NumberInput from './CreateEmployeeInputs/NumberInput'
-import DateInput from './CreateEmployeeInputs/DateInput'
-import SelectInput from './CreateEmployeeInputs/SelectInput'
+import TextInput from './CreateEntryInputs/TextInput'
+import NumberInput from './CreateEntryInputs/NumberInput'
+import DateInput from './CreateEntryInputs/DateInput'
+import SelectInput from './CreateEntryInputs/SelectInput'
 import Modal from './Modal'
 import states from '../../data/states'
 import departments from '../../data/departments'
 
-export default function CreateEmployeeForm() {
+export default function CreateEntryForm() {
   const dispatch = useDispatch()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -27,7 +27,7 @@ export default function CreateEmployeeForm() {
     if (!firstName || !lastName) return
 
     dispatch(
-      addEmployee({
+      addEntry({
         id: Date.now(),
         firstName,
         lastName,

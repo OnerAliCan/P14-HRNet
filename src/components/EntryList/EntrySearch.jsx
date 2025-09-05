@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function EmployeeSearch({ onSearch, setPage }) {
+export default function EntrySearch({ onSearch, setPage }) {
   const [query, setQuery] = useState('')
 
   const handleChange = (e) => {
@@ -12,7 +12,7 @@ export default function EmployeeSearch({ onSearch, setPage }) {
   return (
     <input
       type="text"
-      placeholder="Search employees..."
+      placeholder="Search entries..."
       value={query}
       onChange={handleChange}
     />

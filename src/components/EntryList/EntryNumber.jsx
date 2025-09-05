@@ -1,11 +1,11 @@
 /* eslint-disable indent */
 export default function EntryNumber({
-  filteredEmployeesLength,
+  filteredEntriesLength,
   totalNumberLength,
   showEntries,
   page,
 }) {
-  // console.log('filteredEmployeesLength', filteredEmployeesLength)
+  // console.log('filteredEntriesLength', filteredEntriesLength)
   // console.log('totalNumberLength', totalNumberLength)
   // console.log('showEntries', showEntries)
   // console.log('page', page)
@@ -16,15 +16,15 @@ export default function EntryNumber({
   let totalPage = Math.min(showEntries * page, totalNumberLength)
   const lastDisplayedNumber = Math.min(
     showEntries * page,
-    filteredEmployeesLength,
+    filteredEntriesLength,
   )
 
   switch (true) {
-    case filteredEmployeesLength < totalNumberLength:
+    case filteredEntriesLength < totalNumberLength:
       return (
         <>
           Showing {displayedNumber} to {lastDisplayedNumber} of{' '}
-          {filteredEmployeesLength} entries (filtered from {totalNumberLength}{' '}
+          {filteredEntriesLength} entries (filtered from {totalNumberLength}{' '}
           total entries)
         </>
       )

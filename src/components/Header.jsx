@@ -10,10 +10,10 @@ function Header() {
         </Typography>
         <Box sx={{ display: 'flex', gap: 2 }}>
           <Button color="inherit" component={Link} to="/">
-            Create Employee
+            Create Entry
           </Button>
-          <Button color="inherit" component={Link} to="/employees">
-            Employee List
+          <Button color="inherit" component={Link} to="/entries">
+            Entry List
           </Button>
         </Box>
       </Toolbar>
