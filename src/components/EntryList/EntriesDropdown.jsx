@@ -1,7 +1,7 @@
 export default function EntriesDropdown({
   dropdownOptions,
   dropdownSelectedOption,
-  setDropdownSelectedOption,
+  onChange,
 }) {
   return (
     <>
@@ -11,7 +11,7 @@ export default function EntriesDropdown({
         name="number-of-entries"
         id="number-of-entries"
         value={dropdownSelectedOption}
-        onChange={(e) => setDropdownSelectedOption(Number(e.target.value))}
+        onChange={(e) => onChange(Number(e.target.value))}
       >
         {dropdownOptions.map((dropdownOption) => (
           <option key={dropdownOption} value={dropdownOption}>

@@ -1,42 +1,10 @@
-import tableHeaders from '../../data/tableHeaders'
-import sortArrowBlank from '../../assets/sort-arrow-blank.svg'
-import sortArrowUp from '../../assets/sort-arrow-up.svg'
-import sortArrowDown from '../../assets/sort-arrow-down.svg'
-
-export default function SortingTableHeaders({ sortConfig, setSortConfig }) {
-  const handleSort = (columnKey) => {
-    if (sortConfig.key === columnKey) {
-      setSortConfig({
-        key: columnKey,
-        direction: sortConfig.direction === 'asc' ? 'desc' : 'asc',
-      })
-    } else {
-      setSortConfig({ key: columnKey, direction: 'asc' })
-    }
-  }
-
+export default function SortingTableHeaders({ headers }) {
   return (
     <>
-      {tableHeaders.map((title, index) => (
-        <th key={index} onClick={() => handleSort(title.key)}>
-          {title.label}
-          {sortConfig.key === title.key ? (
-            sortConfig.direction === 'asc' ? (
-              <img
-                src={sortArrowDown}
-                alt="ascendant"
-                style={{ marginLeft: 4 }}
-              />
-            ) : (
-              <img
-                src={sortArrowUp}
-                alt="descendant"
-                style={{ marginLeft: 4 }}
-              />
-            )
-          ) : (
-            <img src={sortArrowBlank} />
-          )}
+      {headers.map((header, index) => (
+        <th key={index} onClick={header.onClick}>
+          {header.label}
+          <img src={header.icon} alt="" style={{ marginLeft: 4 }} />
         </th>
       ))}
     </>
