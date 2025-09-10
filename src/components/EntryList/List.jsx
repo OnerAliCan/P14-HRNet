@@ -1,6 +1,5 @@
 // component qui va chapeauter les autres sous-components (à la maniere du component CreateEntryForm)
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import EntryRow from './EntryRow'
 import SortingTableHeaders from './SortingTableHeaders'
 import EntrySearch from './EntrySearch'
@@ -8,14 +7,11 @@ import EntryNumber from './EntryNumber'
 import EntriesDropdown from './EntriesDropdown'
 import Pagination from './Pagination'
 import dropdownOptions from '../../data/dropdownOptions'
-import tableHeaders from '../../data/tableHeaders'
 import sortArrowBlank from '../../assets/sort-arrow-blank.svg'
 import sortArrowUp from '../../assets/sort-arrow-up.svg'
 import sortArrowDown from '../../assets/sort-arrow-down.svg'
 
-export default function List() {
-  const entries = useSelector((state) => state.entries.list)
-
+export default function List({ entries, tableHeaders }) {
   // INITIALISATION DE STATES
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -31,7 +27,7 @@ export default function List() {
     direction: 'asc',
   })
 
-  // Création d'une copie pour trier
+  // Création d'une copie de entries pour trier
   let sortedEntries = [...entries]
 
   // TRIAGE
@@ -100,7 +96,6 @@ export default function List() {
 
   const filteredEntriesLength = filteredEntries.length
   const totalNumberLength = sortedEntries.length
-  // const entryNumberLength = setShowEntries.length
 
   //SECTION ENTRYNUMBER DROPDOWN
 
@@ -180,6 +175,7 @@ export default function List() {
   if (maxPage <= 7) {
     pagesToShow = Array.from({ length: maxPage }, (_, i) => i + 1)
   } else {
+    // si plus de 7 pages, affiche soit les premieres, soit la page actuelle et la page -1 et +1, soit les dernieres pages
     const first = 1
     const last = maxPage
 
