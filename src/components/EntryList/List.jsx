@@ -21,7 +21,7 @@ export default function List({ entries, tableHeaders }) {
   // Page initialisée sur 1
   const [page, setPage] = useState(1)
 
-  // Tri par défaut sur "Prénom"
+  // Tri par défaut sur "First Name"
   const [sortConfig, setSortConfig] = useState({
     key: 'firstName',
     direction: 'asc',
@@ -203,39 +203,47 @@ export default function List({ entries, tableHeaders }) {
 
   return (
     <>
-      <EntrySearch searchQuery={searchQuery} handleChange={handleChange} />
-      <EntriesDropdown
-        dropdownOptions={dropdownOptions}
-        dropdownSelectedOption={dropdownSelectedOption}
-        onChange={handleDropdownChange}
-      />
-      <table>
-        <thead>
-          <tr>
-            <SortingTableHeaders headers={headers} />
-          </tr>
-        </thead>
-        <tbody>
-          {getDisplayedEntries().map((rowData, index) => (
-            <EntryRow key={index} rowData={rowData} />
-          ))}
-        </tbody>
-      </table>
-      <EntryNumber
-        filteredEntriesLength={filteredEntriesLength}
-        totalNumberLength={totalNumberLength}
-        displayedNumber={displayedNumber}
-        lastDisplayedEntryIndex={lastDisplayedEntryIndex}
-        lastDisplayedNumber={lastDisplayedNumber}
-      />
-      <Pagination
-        page={page}
-        handlePrevious={handlePrevious}
-        handleNext={handleNext}
-        maxPage={maxPage}
-        setPage={setPage}
-        pagesToShow={pagesToShow}
-      />
+      <div className="entry-list">
+        <div className="entry-list-top">
+          <EntriesDropdown
+            dropdownOptions={dropdownOptions}
+            dropdownSelectedOption={dropdownSelectedOption}
+            onChange={handleDropdownChange}
+          />
+          <EntrySearch searchQuery={searchQuery} handleChange={handleChange} />
+        </div>
+        <div className="entry-list-middle">
+          <table>
+            <thead>
+              <tr>
+                <SortingTableHeaders headers={headers} />
+              </tr>
+            </thead>
+            <tbody>
+              {getDisplayedEntries().map((rowData, index) => (
+                <EntryRow key={index} rowData={rowData} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="entry-list-bottom">
+          <EntryNumber
+            filteredEntriesLength={filteredEntriesLength}
+            totalNumberLength={totalNumberLength}
+            displayedNumber={displayedNumber}
+            lastDisplayedEntryIndex={lastDisplayedEntryIndex}
+            lastDisplayedNumber={lastDisplayedNumber}
+          />
+          <Pagination
+            page={page}
+            handlePrevious={handlePrevious}
+            handleNext={handleNext}
+            maxPage={maxPage}
+            setPage={setPage}
+            pagesToShow={pagesToShow}
+          />
+        </div>
+      </div>
     </>
   )
 }

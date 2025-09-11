@@ -4,7 +4,7 @@ export default function SortingTableHeaders({ headers }) {
       {headers.map((header, index) => (
         <th key={index} onClick={header.onClick}>
           {header.label}
-          <img src={header.icon} alt="" style={{ marginLeft: 4 }} />
+          <img src={header.icon} alt="" />
         </th>
       ))}
     </>

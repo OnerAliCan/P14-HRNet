@@ -62,41 +62,37 @@ export default function CreateEntryForm() {
       sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
     >
       <TextInput
-        label="Prénom"
+        label="First Name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         required
       />
       <TextInput
-        label="Nom"
+        label="Last Name"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         required
       />
       <DateInput
-        label="Date de naissance"
+        label="Date of Birth"
         value={dateOfBirth}
         onChange={setDateOfBirth}
       />
-      <DateInput
-        label="Date de début"
-        value={startDate}
-        onChange={setStartDate}
-      />
+      <DateInput label="Start Date" value={startDate} onChange={setStartDate} />
 
       <Typography variant="h6">Adresse</Typography>
       <TextInput
-        label="Rue"
+        label="Street"
         value={street}
         onChange={(e) => setStreet(e.target.value)}
       />
       <TextInput
-        label="Ville"
+        label="City"
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />
       <SelectInput
-        label="État"
+        label="State"
         value={state}
         onChange={(e) => setState(e.target.value)}
         options={states}
@@ -107,18 +103,18 @@ export default function CreateEntryForm() {
         onChange={(e) => setZipCode(e.target.value)}
       />
       <SelectInput
-        label="Département"
+        label="Department"
         value={department}
         onChange={(e) => setDepartment(e.target.value)}
         options={departments}
       />
       <Button type="submit" variant="contained">
-        Ajouter
+        Save
       </Button>
       <Modal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        message="L'employé a bien été ajouté !"
+        message="Employee Created !"
       />
     </Box>
   )

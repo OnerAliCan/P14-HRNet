@@ -9,7 +9,7 @@ export default function Pagination({
   pagesToShow,
 }) {
   return (
-    <>
+    <div className="pagination-container">
       <button onClick={handlePrevious} disabled={page <= 1}>
         Previous
       </button>
@@ -22,6 +22,6 @@ export default function Pagination({
       <button onClick={handleNext} disabled={page >= maxPage}>
         Next
       </button>
-    </>
+    </div>
   )
 }

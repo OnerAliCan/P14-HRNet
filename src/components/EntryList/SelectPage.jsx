@@ -11,8 +11,8 @@ export default function SelectPage({ currentPage, onClick, pagesToShow }) {
             key={page}
             onClick={() => onClick(page)}
             style={{
-              color: page === currentPage ? 'red' : 'black',
-              margin: '0 2px',
+              backgroundColor: page === currentPage ? '#1976d2' : 'white',
+              color: page === currentPage ? 'white' : '#1976d2',
             }}
           >
             {page}

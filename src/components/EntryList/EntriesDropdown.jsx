@@ -4,12 +4,12 @@ export default function EntriesDropdown({
   onChange,
 }) {
   return (
-    <>
-      <label htmlFor="number-of-entries">Show</label>
+    <div className="entries-dropdown-container">
+      <label htmlFor="entries-dropdown">Show</label>
 
       <select
-        name="number-of-entries"
-        id="number-of-entries"
+        name="entries-dropdown"
+        id="entries-dropdown"
         value={dropdownSelectedOption}
         onChange={(e) => onChange(Number(e.target.value))}
       >
@@ -20,6 +20,6 @@ export default function EntriesDropdown({
         ))}
       </select>
       <span>entries</span>
-    </>
+    </div>
   )
 }
