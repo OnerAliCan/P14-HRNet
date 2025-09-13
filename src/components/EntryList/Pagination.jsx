@@ -1,3 +1,5 @@
+// Component to handle pagination controls in EntryList
+
 import SelectPage from './SelectPage'
 
 export default function Pagination({

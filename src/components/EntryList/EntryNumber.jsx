@@ -1,3 +1,5 @@
+// Component to display the number of entries currently shown and total entries
+
 /* eslint-disable indent */
 export default function EntryNumber({
   filteredEntriesLength,

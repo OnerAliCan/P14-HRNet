@@ -1,3 +1,5 @@
+// Component to render a single table row for an entry
+
 export default function EntryRow({ rowData }) {
   return (
     <tr className="entry-row">

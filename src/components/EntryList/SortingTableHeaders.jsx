@@ -1,3 +1,5 @@
+// Component to render table headers with sorting functionality
+
 export default function SortingTableHeaders({ headers }) {
   return (
     <>

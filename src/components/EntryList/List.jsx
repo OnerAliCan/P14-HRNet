@@ -1,4 +1,4 @@
-// component qui va chapeauter les autres sous-components (à la maniere du component CreateEntryForm)
+// Main component that imports and manages all sub-components
 import { useState, useEffect } from 'react'
 import EntryRow from './EntryRow'
 import SortingTableHeaders from './SortingTableHeaders'
@@ -12,46 +12,46 @@ import sortArrowUp from '../../assets/sort-arrow-up.svg'
 import sortArrowDown from '../../assets/sort-arrow-down.svg'
 
 export default function List({ entries, tableHeaders }) {
-  // INITIALISATION DE STATES
+  // STATES INIT
+  // User search input, starts empty
   const [searchQuery, setSearchQuery] = useState('')
 
-  //Nombre d'entrées initialisé à 10
+  // Number of entries displayed per page, default 10
   const [dropdownSelectedOption, setDropdownSelectedOption] = useState(10)
 
-  // Page initialisée sur 1
+  // Current page, default 1
   const [page, setPage] = useState(1)
 
-  // Tri par défaut sur "First Name"
+  // Sorting configuration, default sort by firstName ascending
   const [sortConfig, setSortConfig] = useState({
     key: 'firstName',
     direction: 'asc',
   })
 
-  // Création d'une copie de entries pour trier
+  // Make a copy of entries for sorting/filtering
   let sortedEntries = [...entries]
 
-  // TRIAGE
-
+  // SORT ENTRIES
   if (sortConfig.key) {
     sortedEntries.sort((a, b) => {
       const aValue = a[sortConfig.key]
       const bValue = b[sortConfig.key]
 
-      // Comparer texte
+      // Compare strings
       if (typeof aValue === 'string') {
         return sortConfig.direction === 'asc'
           ? aValue.localeCompare(bValue)
           : bValue.localeCompare(aValue)
       }
 
-      // Comparer nombres
+      // Compare numbers
       if (typeof aValue === 'number') {
         return sortConfig.direction === 'asc'
           ? aValue - bValue
           : bValue - aValue
       }
 
-      // Comparer dates
+      // Compare dates
       if (aValue instanceof Date || !isNaN(Date.parse(aValue))) {
         return sortConfig.direction === 'asc'
           ? new Date(aValue) - new Date(bValue)
@@ -62,13 +62,15 @@ export default function List({ entries, tableHeaders }) {
     })
   }
 
-  // convertir l'objet filteredEntries en tableau de valeurs (stringifiées)
+  // FILTER ENTRIES BASED ON SEARCH INPUT
+  // convert filteredEntries object in an array with stringified values
   let filteredEntries = sortedEntries.filter((entry) => {
     return Object.values(entry).some((value) =>
       String(value).toLowerCase().includes(searchQuery.toLowerCase()),
     )
   })
 
+  // SORT HANDLER
   const handleSort = (columnKey) => {
     if (sortConfig.key === columnKey) {
       setSortConfig({
@@ -80,6 +82,7 @@ export default function List({ entries, tableHeaders }) {
     }
   }
 
+  // Map headers to include sort icons and click handlers
   const headers = tableHeaders.map((tableHeader) => {
     let icon = sortArrowBlank
     if (sortConfig.key === tableHeader.key) {
@@ -94,14 +97,16 @@ export default function List({ entries, tableHeaders }) {
     }
   })
 
+  // LENGTHS FOR DISPLAY
   const filteredEntriesLength = filteredEntries.length
   const totalNumberLength = sortedEntries.length
 
   //SECTION ENTRYNUMBER DROPDOWN
 
-  // indice de la premiere entrée affichées (apres "Showing")
+  // first displayed entry index ("x" in "Showing x")
   const displayedNumber = dropdownSelectedOption * (page - 1) + 1
-  // indice de la derniere entrée affichées (après "to")
+
+  // last displayed entry index (after "to")
   let lastDisplayedEntryIndex = Math.min(
     dropdownSelectedOption * page,
     totalNumberLength,
@@ -111,20 +116,22 @@ export default function List({ entries, tableHeaders }) {
     filteredEntriesLength,
   )
 
+  // HANDLER FOR DROPDOWN CHANGE
   const handleDropdownChange = (value) => {
     setDropdownSelectedOption(value)
     setPage(1)
   }
 
-  // section search
+  // HANDLER FOR SEARCH INPUT CHANGE
   const handleChange = (e) => {
     const value = e.target.value
     setSearchQuery(value)
     setPage(1)
   }
 
-  // section pagination
+  // PAGINATION SECTION
 
+  // ADJUST PAGE IF OUT OF BOUNDS
   const maxPage = Math.ceil(filteredEntriesLength / dropdownSelectedOption)
 
   const handlePrevious = () => {
@@ -139,7 +146,7 @@ export default function List({ entries, tableHeaders }) {
     }
   }
 
-  // Ajuste la page automatiquement si elle dépasse maxPage ou si le filtre change
+  // ADJUST PAGE IF OUT OF BOUNDS
   useEffect(() => {
     if (page > maxPage) {
       setPage(maxPage || 1)
@@ -149,7 +156,7 @@ export default function List({ entries, tableHeaders }) {
     }
   }, [maxPage, page, setPage])
 
-  // TBODY FORMAT
+  // FORMAT EACH ENTRY AS ARRAY OF VALUES
   const formatEntry = (entry) => [
     entry.firstName,
     entry.lastName,
@@ -162,28 +169,29 @@ export default function List({ entries, tableHeaders }) {
     entry.zipCode,
   ]
 
+  // GET ONLY ENTRIES FOR CURRENT PAGE
   const getDisplayedEntries = () =>
     filteredEntries
       .slice((page - 1) * dropdownSelectedOption, page * dropdownSelectedOption)
       .map(formatEntry)
 
-  // SelectPage section
+  // SELECT PAGE BUTTONS SECTION
 
   let pagesToShow = []
 
-  // Affiche toutes les pages si peu de pages
+  // Displays all page buttons if maxPage less or equal 7
   if (maxPage <= 7) {
     pagesToShow = Array.from({ length: maxPage }, (_, i) => i + 1)
   } else {
-    // si plus de 7 pages, affiche soit les premieres, soit la page actuelle et la page -1 et +1, soit les dernieres pages
+    // If more than 7 pages, show either the first ones, or the current page with previous/next, or the last ones
     const first = 1
     const last = maxPage
 
-    // Premieres pages
+    // First pages
     if (page <= 4) {
       pagesToShow = [1, 2, 3, 4, 5, '...', last]
     }
-    // dernieres pages
+    // Last pages
     else if (page >= maxPage - 3) {
       pagesToShow = [
         first,
@@ -195,7 +203,7 @@ export default function List({ entries, tableHeaders }) {
         last,
       ]
     }
-    // pages du milieu
+    // Middle pages
     else {
       pagesToShow = [first, '...', page - 1, page, page + 1, '...', last]
     }

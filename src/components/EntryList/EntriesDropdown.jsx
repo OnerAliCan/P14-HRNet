@@ -1,3 +1,5 @@
+// Component for selecting the number of entries displayed per page with a dropdown
+
 export default function EntriesDropdown({
   dropdownOptions,
   dropdownSelectedOption,

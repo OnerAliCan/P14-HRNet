@@ -1,3 +1,5 @@
+// Component to render individual page buttons in the pagination
+
 export default function SelectPage({ currentPage, onClick, pagesToShow }) {
   return (
     <>
