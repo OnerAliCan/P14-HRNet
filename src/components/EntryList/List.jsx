@@ -31,6 +31,18 @@ export default function List({ entries, tableHeaders }) {
   // Make a copy of entries for sorting/filtering
   let sortedEntries = [...entries]
 
+  // SORT HANDLER
+  const handleSort = (columnKey) => {
+    if (sortConfig.key === columnKey) {
+      setSortConfig({
+        key: columnKey,
+        direction: sortConfig.direction === 'asc' ? 'desc' : 'asc',
+      })
+    } else {
+      setSortConfig({ key: columnKey, direction: 'asc' })
+    }
+  }
+
   // SORT ENTRIES
   if (sortConfig.key) {
     sortedEntries.sort((a, b) => {
@@ -69,18 +81,6 @@ export default function List({ entries, tableHeaders }) {
       String(value).toLowerCase().includes(searchQuery.toLowerCase()),
     )
   })
-
-  // SORT HANDLER
-  const handleSort = (columnKey) => {
-    if (sortConfig.key === columnKey) {
-      setSortConfig({
-        key: columnKey,
-        direction: sortConfig.direction === 'asc' ? 'desc' : 'asc',
-      })
-    } else {
-      setSortConfig({ key: columnKey, direction: 'asc' })
-    }
-  }
 
   // Map headers to include sort icons and click handlers
   const headers = tableHeaders.map((tableHeader) => {
